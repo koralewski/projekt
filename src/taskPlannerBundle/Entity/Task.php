@@ -14,11 +14,8 @@ use Doctrine\ORM\Mapping as ORM;
 class Task
 {
     /**
-
      * @ORM\OneToMany(targetEntity="Comment", mappedBy="tasks")
-
      */
-
     private $comments;
 
     public function __construct() {
@@ -27,21 +24,16 @@ class Task
         $this->category = new ArrayCollection();
     }
     /**
-
      * @ORM\OneToMany(targetEntity="Category", mappedBy="task")
-
      */
-
     private $category;
+
     /**
-
      * @ORM\ManyToOne(targetEntity="User", inversedBy="task")
-
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
-
      */
-
     private $users;
+
     /**
      * @var int
      *

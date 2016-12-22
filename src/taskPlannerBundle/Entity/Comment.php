@@ -13,14 +13,11 @@ use Doctrine\ORM\Mapping as ORM;
 class Comment
 {
     /**
-
      * @ORM\ManyToOne(targetEntity="Task", inversedBy="comments")
-
      * @ORM\JoinColumn(name="task_id", referencedColumnName="id")
-
      */
+    private $task;
 
-    private $taskId;
     /**
      * @var int
      *
@@ -74,12 +71,12 @@ class Comment
     /**
      * Set taskId
      *
-     * @param \taskPlannerBundle\Entity\Task $taskId
+     * @param \taskPlannerBundle\Entity\Task $task
      * @return Comment
      */
-    public function setTaskId(\taskPlannerBundle\Entity\Task $taskId = null)
+    public function setTask(\taskPlannerBundle\Entity\Task $task = null)
     {
-        $this->taskId = $taskId;
+        $this->task = $task;
 
         return $this;
     }
@@ -89,8 +86,8 @@ class Comment
      *
      * @return \taskPlannerBundle\Entity\Task 
      */
-    public function getTaskId()
+    public function getTask()
     {
-        return $this->taskId;
+        return $this->task;
     }
 }

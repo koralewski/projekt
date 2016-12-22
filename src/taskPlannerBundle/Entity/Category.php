@@ -15,11 +15,8 @@ class Category
     /**
 
      * @ORM\ManyToOne(targetEntity="Task", inversedBy="category")
-
      * @ORM\JoinColumn(name="task_id", referencedColumnName="id")
-
      */
-
     private $taskes;
 
     /**
@@ -93,5 +90,8 @@ class Category
     public function getTaskes()
     {
         return $this->taskes;
+    }
+    public function __toString() {
+        return $this->name;
     }
 }
