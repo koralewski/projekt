@@ -8,19 +8,19 @@ use Doctrine\ORM\Mapping as ORM;
  * Comment
  *
  * @ORM\Table(name="comment")
- * @ORM\Entity(repositoryClass="taskPlannerBundle\Repository\CommentsRepository")
+ * @ORM\Entity(repositoryClass="taskPlannerBundle\Repository\CommentRepository")
  */
-class Comments
+class Comment
 {
     /**
 
-     * @ORM\ManyToOne(targetEntity="Task", inversedBy="comment")
+     * @ORM\ManyToOne(targetEntity="Task", inversedBy="comments")
 
      * @ORM\JoinColumn(name="task_id", referencedColumnName="id")
 
      */
 
-    private $tasks;
+    private $taskId;
     /**
      * @var int
      *
@@ -52,7 +52,7 @@ class Comments
      * Set comment
      *
      * @param string $comment
-     * @return Comments
+     * @return Comment
      */
     public function setComment($comment)
     {
@@ -69,28 +69,5 @@ class Comments
     public function getComment()
     {
         return $this->comment;
-    }
-
-    /**
-     * Set tasks
-     *
-     * @param \taskPlannerBundle\Entity\Task $tasks
-     * @return Comments
-     */
-    public function setTasks(\taskPlannerBundle\Entity\Task $tasks = null)
-    {
-        $this->tasks = $tasks;
-
-        return $this;
-    }
-
-    /**
-     * Get tasks
-     *
-     * @return \taskPlannerBundle\Entity\Task 
-     */
-    public function getTasks()
-    {
-        return $this->tasks;
     }
 }

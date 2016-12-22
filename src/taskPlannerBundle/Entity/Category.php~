@@ -71,4 +71,27 @@ class Category
     {
         return $this->name;
     }
+
+    /**
+     * Set taskes
+     *
+     * @param \taskPlannerBundle\Entity\Task $taskes
+     * @return Category
+     */
+    public function setTaskes(\taskPlannerBundle\Entity\Task $taskes = null)
+    {
+        $this->taskes = $taskes;
+
+        return $this;
+    }
+
+    /**
+     * Get taskes
+     *
+     * @return \taskPlannerBundle\Entity\Task 
+     */
+    public function getTaskes()
+    {
+        return $this->taskes;
+    }
 }

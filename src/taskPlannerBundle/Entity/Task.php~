@@ -15,7 +15,7 @@ class Task
 {
     /**
 
-     * @ORM\OneToMany(targetEntity="Comments", mappedBy="tasks")
+     * @ORM\OneToMany(targetEntity="Comment", mappedBy="tasks")
 
      */
 
@@ -28,14 +28,14 @@ class Task
     }
     /**
 
-     * @ORM\OneToMany(targetEntity="Category", mappedBy="tasks")
+     * @ORM\OneToMany(targetEntity="Category", mappedBy="task")
 
      */
 
     private $category;
     /**
 
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="tasks")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="task")
 
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
 
@@ -236,5 +236,61 @@ class Task
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Add category
+     *
+     * @param \taskPlannerBundle\Entity\Category $category
+     * @return Task
+     */
+    public function addCategory(\taskPlannerBundle\Entity\Category $category)
+    {
+        $this->category[] = $category;
+
+        return $this;
+    }
+
+    /**
+     * Remove category
+     *
+     * @param \taskPlannerBundle\Entity\Category $category
+     */
+    public function removeCategory(\taskPlannerBundle\Entity\Category $category)
+    {
+        $this->category->removeElement($category);
+    }
+
+    /**
+     * Get category
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    /**
+     * Set users
+     *
+     * @param \taskPlannerBundle\Entity\User $users
+     * @return Task
+     */
+    public function setUsers(\taskPlannerBundle\Entity\User $users = null)
+    {
+        $this->users = $users;
+
+        return $this;
+    }
+
+    /**
+     * Get users
+     *
+     * @return \taskPlannerBundle\Entity\User 
+     */
+    public function getUsers()
+    {
+        return $this->users;
     }
 }

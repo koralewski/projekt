@@ -15,7 +15,7 @@ class Task
 {
     /**
 
-     * @ORM\OneToMany(targetEntity="Comments", mappedBy="tasks")
+     * @ORM\OneToMany(targetEntity="Comment", mappedBy="tasks")
 
      */
 
@@ -28,14 +28,14 @@ class Task
     }
     /**
 
-     * @ORM\OneToMany(targetEntity="Category", mappedBy="tasks")
+     * @ORM\OneToMany(targetEntity="Category", mappedBy="task")
 
      */
 
     private $category;
     /**
 
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="tasks")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="task")
 
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
 

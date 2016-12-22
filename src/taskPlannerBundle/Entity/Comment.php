@@ -5,12 +5,12 @@ namespace taskPlannerBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Comments
+ * Comment
  *
- * @ORM\Table(name="comments")
- * @ORM\Entity(repositoryClass="taskPlannerBundle\Repository\CommentsRepository")
+ * @ORM\Table(name="comment")
+ * @ORM\Entity(repositoryClass="taskPlannerBundle\Repository\CommentRepository")
  */
-class Comments
+class Comment
 {
     /**
 
@@ -20,7 +20,7 @@ class Comments
 
      */
 
-    private $tasks;
+    private $taskId;
     /**
      * @var int
      *
@@ -52,7 +52,7 @@ class Comments
      * Set comment
      *
      * @param string $comment
-     * @return Comments
+     * @return Comment
      */
     public function setComment($comment)
     {
@@ -72,25 +72,25 @@ class Comments
     }
 
     /**
-     * Set tasks
+     * Set taskId
      *
-     * @param \taskPlannerBundle\Entity\Task $tasks
-     * @return Comments
+     * @param \taskPlannerBundle\Entity\Task $taskId
+     * @return Comment
      */
-    public function setTasks(\taskPlannerBundle\Entity\Task $tasks = null)
+    public function setTaskId(\taskPlannerBundle\Entity\Task $taskId = null)
     {
-        $this->tasks = $tasks;
+        $this->taskId = $taskId;
 
         return $this;
     }
 
     /**
-     * Get tasks
+     * Get taskId
      *
      * @return \taskPlannerBundle\Entity\Task 
      */
-    public function getTasks()
+    public function getTaskId()
     {
-        return $this->tasks;
+        return $this->taskId;
     }
 }
