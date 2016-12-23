@@ -14,11 +14,8 @@ use Doctrine\ORM\Mapping as ORM;
 class Task
 {
     /**
-
-     * @ORM\OneToMany(targetEntity="Comment", mappedBy="tasks")
-
+     * @ORM\OneToMany(targetEntity="Comment", mappedBy="task")
      */
-
     private $comments;
 
     public function __construct() {
@@ -27,24 +24,18 @@ class Task
         $this->category = new ArrayCollection();
     }
     /**
-
      * @ORM\OneToMany(targetEntity="Category", mappedBy="task")
-
      */
-
     private $category;
+
     /**
-
      * @ORM\ManyToOne(targetEntity="User", inversedBy="task")
-
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
-
      */
-
     private $users;
+
     /**
      * @var int
-     *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -198,9 +189,9 @@ class Task
     /**
      * Remove comments
      *
-     * @param \taskPlannerBundle\Entity\Comments $comments
+     * @param \taskPlannerBundle\Entity\Comment $comments
      */
-    public function removeComment(\taskPlannerBundle\Entity\Comments $comments)
+    public function removeComment(\taskPlannerBundle\Entity\Comment $comments)
     {
         $this->comments->removeElement($comments);
     }

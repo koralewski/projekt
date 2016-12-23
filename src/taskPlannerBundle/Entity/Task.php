@@ -14,29 +14,30 @@ use Doctrine\ORM\Mapping as ORM;
 class Task
 {
     /**
-     * @ORM\OneToMany(targetEntity="Comment", mappedBy="tasks")
+     * @ORM\OneToMany(targetEntity="Comment", mappedBy="taskes")
      */
     private $comments;
 
-    public function __construct() {
+    public function __construct()
+    {
 
         $this->comments = new ArrayCollection();
         $this->category = new ArrayCollection();
     }
+
     /**
-     * @ORM\OneToMany(targetEntity="Category", mappedBy="task")
+     * @ORM\OneToMany(targetEntity="Category", mappedBy="taskes")
      */
     private $category;
 
     /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="task")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="taskes")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
-    private $users;
+    private $user;
 
     /**
      * @var int
-     *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -75,7 +76,7 @@ class Task
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -98,7 +99,7 @@ class Task
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -121,7 +122,7 @@ class Task
     /**
      * Get description
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -144,7 +145,7 @@ class Task
     /**
      * Get done
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getDone()
     {
@@ -167,7 +168,7 @@ class Task
     /**
      * Get dueDate
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDueDate()
     {
@@ -177,10 +178,10 @@ class Task
     /**
      * Add comments
      *
-     * @param \taskPlannerBundle\Entity\Comments $comments
+     * @param \taskPlannerBundle\Entity\Comment $comments
      * @return Task
      */
-    public function addComment(\taskPlannerBundle\Entity\Comments $comments)
+    public function addComment(\taskPlannerBundle\Entity\Comment $comments)
     {
         $this->comments[] = $comments;
 
@@ -190,9 +191,9 @@ class Task
     /**
      * Remove comments
      *
-     * @param \taskPlannerBundle\Entity\Comments $comments
+     * @param \taskPlannerBundle\Entity\Comment $comments
      */
-    public function removeComment(\taskPlannerBundle\Entity\Comments $comments)
+    public function removeComment(\taskPlannerBundle\Entity\Comment $comments)
     {
         $this->comments->removeElement($comments);
     }
@@ -200,7 +201,7 @@ class Task
     /**
      * Get comments
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getComments()
     {
@@ -223,7 +224,7 @@ class Task
     /**
      * Get user
      *
-     * @return \taskPlannerBundle\Entity\User 
+     * @return \taskPlannerBundle\Entity\User
      */
     public function getUser()
     {
@@ -256,7 +257,7 @@ class Task
     /**
      * Get category
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getCategory()
     {
@@ -269,9 +270,9 @@ class Task
      * @param \taskPlannerBundle\Entity\User $users
      * @return Task
      */
-    public function setUsers(\taskPlannerBundle\Entity\User $users = null)
+    public function setUsers(\taskPlannerBundle\Entity\User $user = null)
     {
-        $this->users = $users;
+        $this->user = $user;
 
         return $this;
     }
@@ -279,10 +280,16 @@ class Task
     /**
      * Get users
      *
-     * @return \taskPlannerBundle\Entity\User 
+     * @return \taskPlannerBundle\Entity\User
      */
     public function getUsers()
     {
-        return $this->users;
+        return $this->user;
     }
+
+    public function __toString()
+    {
+        return (string)$this->name();
+    }
+
 }

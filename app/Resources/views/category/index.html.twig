@@ -5,11 +5,11 @@
 
     <table>
         <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Actions</th>
-            </tr>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Actions</th>
+        </tr>
         </thead>
         <tbody>
         {% for category in categories %}
@@ -23,6 +23,15 @@
                         </li>
                         <li>
                             <a href="{{ path('category_edit', { 'id': category.id }) }}">edit</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('category_index') }}">Back to the Category list</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('fos_user_profile_show') }}">Back to the Users list</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('task_index') }}">Back to the Task list</a>
                         </li>
                     </ul>
                 </td>

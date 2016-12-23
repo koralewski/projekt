@@ -5,7 +5,8 @@ namespace taskPlannerBundle\Controller;
 use taskPlannerBundle\Entity\Task;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Task controller.
@@ -23,8 +24,10 @@ class TaskController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
+        $loggedUser = $this->getUser();
 
-        $tasks = $em->getRepository('taskPlannerBundle:Task')->findAll();
+
+        $tasks = $em->getRepository('taskPlannerBundle:Task')->findByUser($loggedUser);
 
         return $this->render('task/index.html.twig', array(
             'tasks' => $tasks,
@@ -45,6 +48,7 @@ class TaskController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $task->setUser($this->getUser());
             $em->persist($task);
             $em->flush($task);
 
@@ -130,7 +134,6 @@ class TaskController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('task_delete', array('id' => $task->getId())))
             ->setMethod('DELETE')
-            ->getForm()
-        ;
+            ->getForm();
     }
 }

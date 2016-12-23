@@ -38,7 +38,7 @@ class Comment
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -61,7 +61,7 @@ class Comment
     /**
      * Get comment
      *
-     * @return string 
+     * @return string
      */
     public function getComment()
     {
@@ -84,10 +84,12 @@ class Comment
     /**
      * Get taskId
      *
-     * @return \taskPlannerBundle\Entity\Task 
+     * @return \taskPlannerBundle\Entity\Task
      */
     public function getTask()
     {
         return $this->task;
     }
+
+
 }
